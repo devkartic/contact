@@ -1,5 +1,8 @@
 <?php
 
-Route::get('contact', function (){
-    return view('contact::contact');
+use Illuminate\Http\Request;
+
+Route::group(['namespace' => 'Bitfumes\Contact\Http\Controllers'], function () {
+    Route::get('contact', 'ContactController@index');
+    Route::post('contact', 'ContactController@send');
 });
