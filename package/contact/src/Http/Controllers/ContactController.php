@@ -2,8 +2,11 @@
 
 namespace Bitfumes\Contact\Http\Controllers;
 
+use Bitfumes\Contact\Mail\ContactMailable;
+use Bitfumes\Contact\Models\Contact;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -12,6 +15,8 @@ class ContactController extends Controller
     }
 
     public function send(Request $request){
-        return $request->all();
+        Mail::to(config('contact.send_email_to'))->send(new ContactMailable($request->name, $request->body));
+        Contact::create($request->all());
+        return redirect()->back();
     }
 }

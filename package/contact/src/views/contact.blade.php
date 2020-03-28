@@ -21,6 +21,10 @@
                 <form action="{{ url('contact') }}" method="post">
                     @csrf
                     <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="name" class="form-control" id="name" name="name" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
                         <label for="email">Email address</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
                     </div>
